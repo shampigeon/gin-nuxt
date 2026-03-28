@@ -1,0 +1,11 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#EEE6DA"/>
+  <circle cx="232" cy="163" r="130" fill="#1F1F1F" fill-opacity="0.08"/>
+  <circle cx="956" cy="615" r="150" fill="#CC5F2D" fill-opacity="0.18"/>
+  <rect x="258" y="219" width="573" height="349" rx="30" fill="#1F1F1F"/>
+  <rect x="294" y="254" width="501" height="279" rx="16" fill="#CC5F2D"/>
+  <path d="M216 593H874L792 642H297L216 593Z" fill="#1F1F1F"/>
+  <rect x="476" y="603" width="140" height="13" rx="6.5" fill="#F5F0E8"/>
+  <text x="168" y="162" fill="#1F1F1F" font-family="Arial, sans-serif" font-size="58" font-weight="700">Electronics</text>
+  <text x="168" y="224" fill="#6C757D" font-family="Arial, sans-serif" font-size="28">Пример карточки для техники и гаджетов</text>
+</svg>

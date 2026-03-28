@@ -1,0 +1,210 @@
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(41, 98, 255, 0.18), transparent 28%),
+    linear-gradient(180deg, #0a0f1c 0%, #0f172a 55%, #0b1220 100%);
+  color: #e5edf7;
+}
+
+a {
+  color: #9ec5ff;
+}
+
+.app-shell {
+  background: transparent;
+}
+
+.app-header,
+.app-footer {
+  background: rgba(7, 11, 20, 0.82);
+  border-color: rgba(148, 163, 184, 0.14) !important;
+  backdrop-filter: blur(14px);
+}
+
+.app-main {
+  background: transparent;
+}
+
+.navbar-brand,
+.nav-link {
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: #ffffff !important;
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(148, 163, 184, 0.12) !important;
+  color: #e5edf7;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.34) !important;
+}
+
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-color: #e5edf7;
+  --bs-table-border-color: rgba(148, 163, 184, 0.16);
+}
+
+.table thead th {
+  color: #93a4ba;
+}
+
+.form-control,
+.form-select {
+  background-color: rgba(2, 6, 23, 0.75);
+  border-color: rgba(148, 163, 184, 0.18);
+  color: #e5edf7;
+}
+
+.form-control::placeholder {
+  color: #7f8ea3;
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: rgba(2, 6, 23, 0.92);
+  border-color: rgba(96, 165, 250, 0.7);
+  box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.2);
+  color: #f8fbff;
+}
+
+.form-check-input {
+  background-color: rgba(2, 6, 23, 0.85);
+  border-color: rgba(148, 163, 184, 0.26);
+}
+
+.btn-outline-secondary {
+  color: #d4deea;
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active {
+  background-color: rgba(51, 65, 85, 0.6) !important;
+  border-color: rgba(148, 163, 184, 0.45) !important;
+  color: #fff !important;
+}
+
+.btn-outline-primary {
+  color: #9ec5ff;
+  border-color: rgba(96, 165, 250, 0.45);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  color: #fff !important;
+  background-color: rgba(37, 99, 235, 0.35) !important;
+  border-color: rgba(96, 165, 250, 0.7) !important;
+}
+
+.btn-outline-danger:hover,
+.btn-outline-danger:focus,
+.btn-outline-danger:active {
+  color: #fff !important;
+}
+
+.btn-link {
+  color: #8fb8ff;
+}
+
+.text-secondary,
+.text-light-emphasis {
+  color: #93a4ba !important;
+}
+
+.alert-light {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(148, 163, 184, 0.18);
+  color: #d8e2ee;
+}
+
+.alert-warning {
+  background: rgba(120, 53, 15, 0.24);
+  border-color: rgba(251, 191, 36, 0.28);
+  color: #fde68a;
+}
+
+.alert-danger {
+  background: rgba(127, 29, 29, 0.28);
+  border-color: rgba(248, 113, 113, 0.26);
+  color: #fecaca;
+}
+
+.alert-success {
+  background: rgba(20, 83, 45, 0.28);
+  border-color: rgba(74, 222, 128, 0.24);
+  color: #bbf7d0;
+}
+
+.nav-tabs {
+  border-bottom-color: rgba(148, 163, 184, 0.16);
+}
+
+.nav-tabs .nav-link {
+  color: #93a4ba;
+  border: 1px solid transparent;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: rgba(148, 163, 184, 0.12);
+}
+
+.nav-tabs .nav-link.active {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(148, 163, 184, 0.18) rgba(148, 163, 184, 0.18) rgba(15, 23, 42, 0.92);
+  color: #fff;
+}
+
+.badge.text-bg-light {
+  background: rgba(30, 41, 59, 0.9) !important;
+  color: #dbe7f5 !important;
+  border-color: rgba(148, 163, 184, 0.12) !important;
+}
+
+.post-card-image {
+  height: 220px;
+  object-fit: cover;
+  filter: saturate(0.92) brightness(0.95);
+}
+
+.post-card-image {
+  height: 220px;
+  object-fit: cover;
+}
+
+.post-detail-image {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  background: rgba(2, 6, 23, 0.8);
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.auth-page {
+  min-height: calc(100vh - 180px);
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+@media (max-width: 991px) {
+  .post-detail-image {
+    height: 320px;
+  }
+}

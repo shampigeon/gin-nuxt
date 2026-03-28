@@ -1,0 +1,15 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#F1E3D3"/>
+  <circle cx="197" cy="154" r="128" fill="#CC5F2D" fill-opacity="0.18"/>
+  <circle cx="1005" cy="631" r="164" fill="#1F1F1F" fill-opacity="0.08"/>
+  <rect x="168" y="383" width="685" height="138" rx="40" fill="#CC5F2D"/>
+  <path d="M310 296C324 266 353 247 386 247H647C685 247 719 270 736 304L781 393H260L310 296Z" fill="#1F1F1F"/>
+  <circle cx="365" cy="543" r="74" fill="#1F1F1F"/>
+  <circle cx="709" cy="543" r="74" fill="#1F1F1F"/>
+  <circle cx="365" cy="543" r="34" fill="#F5F0E8"/>
+  <circle cx="709" cy="543" r="34" fill="#F5F0E8"/>
+  <rect x="386" y="276" width="129" height="75" rx="16" fill="#F5F0E8"/>
+  <rect x="536" y="276" width="146" height="75" rx="16" fill="#F5F0E8"/>
+  <text x="168" y="162" fill="#1F1F1F" font-family="Arial, sans-serif" font-size="58" font-weight="700">Auto Listing</text>
+  <text x="168" y="224" fill="#6C757D" font-family="Arial, sans-serif" font-size="28">Пример карточки для раздела автомобилей</text>
+</svg>
