@@ -12,8 +12,24 @@ import type {
   RegisterResponse
 } from '~/types/api'
 
-function getApiBase() {
-  return useRuntimeConfig().public.apiBase
+function getApiBase(): string {
+  return useRuntimeConfig().public.apiBase as string
+}
+
+function buildUrl(path: string, params?: Record<string, string | undefined>): string {
+  const url = new URL(getApiBase() + path)
+  if (params) {
+    for (const [key, value] of Object.entries(params)) {
+      if (value !== undefined && value !== '') {
+        url.searchParams.set(key, value)
+      }
+    }
+  }
+  return url.toString()
+}
+
+async function apiFetch<T>(path: string, params?: Record<string, string | undefined>): Promise<T> {
+  return $fetch<T>(buildUrl(path, params))
 }
 
 function logApi(label: string, payload: Record<string, any>) {
@@ -83,25 +99,9 @@ function normalizePost(item: unknown) {
   const candidate = item as Record<string, any>
 
   if (candidate?.post?.id) {
-    const part = candidate.part as Record<string, any> | undefined
-
     return {
       ...candidate.post,
-      part: {
-        address: part?.address,
-        isApartment: part?.isApartment,
-        floor: part?.floor,
-        rooms: part?.rooms,
-        area: part?.area,
-        balcony: part?.balcony,
-        separateBathroom: part?.separateBathroom,
-        renovation: part?.renovation,
-        elevator: part?.elevator,
-        gas: part?.gas,
-        yearConstruction: part?.yearConstruction,
-        parking: part?.parking,
-        privateTerritory: part?.privateTerritory
-      }
+      part: candidate.part ?? null
     }
   }
 
@@ -118,15 +118,7 @@ function normalizePostsResponse(response: PostsListResponse | { list: ApiFlatLis
 export async function fetchPublicPosts(query: Record<string, string | string[] | undefined>) {
   const { params, limit, page } = buildPostListQuery(query)
   const path = '/v1/public/posts/list'
-  const baseURL = getApiBase()
-
-  logApi('request', { path, baseURL, method: 'GET', params: params.toString() })
-  const response = await $fetch<PostsListResponse>(path, {
-    baseURL,
-    params
-  })
-  logApi('response', { path, total: response.total, listLength: response.list?.length || 0 })
-
+  const response = await apiFetch<PostsListResponse>(path, Object.fromEntries(params))
   return { response: normalizePostsResponse(response), limit, page }
 }
 
@@ -136,71 +128,34 @@ export async function fetchCategoryPosts(
 ) {
   const { params, limit, page } = buildPostListQuery(query)
   const path = `/v1/public/category/${categoryId}/items`
-  const baseURL = getApiBase()
-
-  logApi('request', { path, baseURL, method: 'GET', params: params.toString() })
-  const response = await $fetch<PostsListResponse | { list: ApiFlatListItem[]; total: number }>(
-    path,
-    {
-    baseURL,
-    params
-    }
-  )
-  logApi('response', { path, total: response.total, listLength: response.list?.length || 0 })
-
+  const response = await apiFetch<PostsListResponse>(path, Object.fromEntries(params))
   return { response: normalizePostsResponse(response), limit, page }
+}
+
+export async function fetchRecentCategoryPosts(categoryId: number, limit: number) {
+  const path = `/v1/public/category/${categoryId}/items`
+  const response = await apiFetch<PostsListResponse>(path, { limit: String(limit), offset: '0', recursive: 'true' })
+  return (response.list || []).map(normalizePost)
 }
 
 export async function fetchPostDetails(postId: string | number) {
   const path = `/v1/public/posts/get-one/${postId}`
-  const baseURL = getApiBase()
-
-  logApi('request', { path, baseURL, method: 'GET' })
-  const response = await $fetch<PostResponse>(path, {
-    baseURL
-  })
-  logApi('response', { path, hasData: Boolean(response.data), postId })
-
-  return {
-    data: normalizePost(response.data)
-  }
+  const response = await apiFetch<PostResponse>(path)
+  return { data: normalizePost(response.data) }
 }
 
 export async function fetchCategoryTree(categoryId = 1) {
   const path = `/v1/public/category/${categoryId}/get-tree`
-  const baseURL = getApiBase()
-
-  logApi('request', { path, baseURL, method: 'GET' })
-  const response = await $fetch<ApiCategory>(path, {
-    baseURL
-  })
-  logApi('response', { path, categoryId: response.id, childrenCount: response.children?.length || 0 })
-  return response
+  return apiFetch<ApiCategory>(path)
 }
 
 export async function fetchCategoryFilters(categoryId: string | number) {
-  const path = `/v1/public/category/${categoryId}/filter-fields`
-  const baseURL = getApiBase()
-
-  logApi('request', { path, baseURL, method: 'GET' })
-  const response = await $fetch<FilterFieldsResponse>(path, {
-    baseURL
-  })
-  logApi('response', { path, fieldsCount: response.fields?.length || 0 })
-
+  const response = await apiFetch<FilterFieldsResponse>(`/v1/public/category/${categoryId}/filter-fields`)
   return response.fields as FilterField[]
 }
 
 export async function fetchCategoryFields(categoryId: string | number) {
-  const path = `/v1/public/category/${categoryId}/fields`
-  const baseURL = getApiBase()
-
-  logApi('request', { path, baseURL, method: 'GET' })
-  const response = await $fetch<FilterFieldsResponse>(path, {
-    baseURL
-  })
-  logApi('response', { path, fieldsCount: response.fields?.length || 0 })
-
+  const response = await apiFetch<FilterFieldsResponse>(`/v1/public/category/${categoryId}/fields`)
   return response.fields as FilterField[]
 }
 

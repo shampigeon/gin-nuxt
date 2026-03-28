@@ -208,3 +208,104 @@ a {
     height: 320px;
   }
 }
+
+/* Home — Category Toolbar */
+.home-toolbar {
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.6rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.home-toolbar-inner {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.home-toolbar-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.toolbar-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.toolbar-chip:hover,
+.toolbar-chip--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.home-see-all {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-see-all:hover {
+  text-decoration: underline;
+  color: var(--color-primary);
+}
+
+/* Home — Photo grid (Недвижимость) */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.item-card--photo {
+  padding: 0;
+  overflow: hidden;
+}
+
+.home-card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.home-card-body {
+  padding: 0.75rem 1rem 1rem;
+}
+
+/* Home — List avatar (Работа) */
+.home-list-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .home-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+}
